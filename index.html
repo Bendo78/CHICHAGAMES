@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Clash des Potes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Accueil -->
+  <div id="menu" class="screen">
+    <h1 id="title">Clash des Potes</h1>
+    <label class="who">Qui joue ?
+      <select id="who"></select>
+    </label>
+    <button id="btnBot" class="big">🤖 Entraînement contre le bot</button>
+    <button id="btnHost" class="big">🏟️ Créer une partie</button>
+    <div class="row">
+      <input id="joinCode" placeholder="CODE" maxlength="4" autocomplete="off">
+      <button id="btnJoin">Rejoindre</button>
+    </div>
+    <div class="row">
+      <button id="btnDeck" class="grow">🃏 Mon deck</button>
+      <button id="btnEditor" class="grow">✨ Créer des cartes</button>
+    </div>
+    <p id="menuMsg" class="msg"></p>
+  </div>
+
+  <!-- Atelier : liste de mes cartes -->
+  <div id="editor" class="screen scroll hidden">
+    <h2>✨ Mes cartes</h2>
+    <p class="hint">Crée tes cartes, mets-les dans ton deck, et partage-les avec tes potes.</p>
+    <div id="myCards"></div>
+    <div class="row">
+      <button id="btnNewCard" class="grow">+ Nouvelle carte</button>
+      <button id="btnImport" class="grow">📥 Importer</button>
+    </div>
+    <div id="importBox" class="hidden">
+      <textarea id="importText" placeholder="Colle ici le code de partage d'une carte (CDP1:…)"></textarea>
+      <button id="btnImportOk">Ajouter la carte</button>
+    </div>
+    <p id="editorMsg" class="msg ok"></p>
+    <button id="btnEditorBack" class="big">Retour</button>
+  </div>
+
+  <!-- Atelier : création / modification d'une carte -->
+  <div id="forge" class="screen scroll hidden">
+    <h2 id="forgeTitle">Nouvelle carte</h2>
+    <div class="forgeWrap">
+      <div class="previewCol">
+        <div id="preview"></div>
+        <div class="power"><div id="powerFill"></div></div>
+        <p id="powerTxt"></p>
+      </div>
+      <div id="forgeForm"></div>
+    </div>
+    <p id="forgeMsg" class="msg"></p>
+    <div class="row">
+      <button id="btnForgeSave" class="grow">💾 Enregistrer</button>
+      <button id="btnForgeCancel" class="grow ghost">Annuler</button>
+    </div>
+  </div>
+
+  <!-- Salle d'attente -->
+  <div id="lobby" class="screen hidden">
+    <p>Donne ce code à ton pote :</p>
+    <div id="roomCode" class="code">····</div>
+    <p id="lobbyMsg" class="msg">Connexion…</p>
+    <button id="btnCancel">Annuler</button>
+  </div>
+
+  <!-- Choix du deck -->
+  <div id="deckScreen" class="screen hidden">
+    <h2>Choisis 8 cartes (<span id="deckCount">0</span>/8)</h2>
+    <div id="deckGrid"></div>
+    <div class="row">
+      <button id="btnDeckOk" class="grow">Valider</button>
+      <button id="btnDeckForge" class="grow ghost">✨ Créer une carte</button>
+    </div>
+  </div>
+
+  <!-- Partie -->
+  <div id="gameScreen" class="screen hidden">
+    <div id="topbar">
+      <span id="oppName"></span>
+      <span id="timer">3:00</span>
+      <span id="crowns"></span>
+    </div>
+    <div id="arenaWrap"><canvas id="arena"></canvas></div>
+    <div id="hud">
+      <div id="cards">
+        <div id="next"></div>
+        <div id="hand"></div>
+      </div>
+      <div id="elixirBar"><div id="elixirFill"></div><span id="elixirNum">0</span></div>
+    </div>
+    <div id="toast" class="hidden"></div>
+    <div id="endOverlay" class="hidden">
+      <h2 id="endTitle"></h2>
+      <p id="endScore"></p>
+      <button id="btnBack" class="big">Retour au menu</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="config.js"></script>
+  <script src="engine.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
